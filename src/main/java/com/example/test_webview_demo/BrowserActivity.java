@@ -1,8 +1,5 @@
 package com.example.test_webview_demo;
 
-import java.net.MalformedURLException;
-import java.net.URL;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -16,35 +13,29 @@ import android.os.Message;
 import android.os.Process;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.KeyEvent;
-import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnFocusChangeListener;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
+import android.webkit.CookieSyncManager;
+import android.webkit.DownloadListener;
+import android.webkit.JsResult;
+import android.webkit.ValueCallback;
+import android.webkit.WebChromeClient;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.Toast;
-
 import com.example.test_webview_demo.utils.X5WebView;
-import com.tencent.smtt.export.external.interfaces.IX5WebChromeClient.CustomViewCallback;
-import com.tencent.smtt.export.external.interfaces.JsResult;
-import com.tencent.smtt.export.external.interfaces.WebResourceRequest;
-import com.tencent.smtt.export.external.interfaces.WebResourceResponse;
-import com.tencent.smtt.sdk.CookieSyncManager;
-import com.tencent.smtt.sdk.DownloadListener;
-import com.tencent.smtt.sdk.ValueCallback;
-import com.tencent.smtt.sdk.WebChromeClient;
-import com.tencent.smtt.sdk.WebSettings;
-import com.tencent.smtt.sdk.WebSettings.LayoutAlgorithm;
-import com.tencent.smtt.sdk.WebView;
-import com.tencent.smtt.sdk.WebViewClient;
-import com.tencent.smtt.utils.TbsLog;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 public class BrowserActivity extends Activity {
 	/**
@@ -226,7 +217,6 @@ public class BrowserActivity extends Activity {
 			@Override
 			public void onDownloadStart(String arg0, String arg1, String arg2,
 					String arg3, long arg4) {
-				TbsLog.d(TAG, "url: " + arg0);
 				new AlertDialog.Builder(BrowserActivity.this)
 						.setTitle("allow to download？")
 						.setPositiveButton("yes",
@@ -270,7 +260,7 @@ public class BrowserActivity extends Activity {
 
 		WebSettings webSetting = mWebView.getSettings();
 		webSetting.setAllowFileAccess(true);
-		webSetting.setLayoutAlgorithm(LayoutAlgorithm.NARROW_COLUMNS);
+		webSetting.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.NARROW_COLUMNS);
 		webSetting.setSupportZoom(true);
 		webSetting.setBuiltInZoomControls(true);
 		webSetting.setUseWideViewPort(true);
@@ -296,8 +286,6 @@ public class BrowserActivity extends Activity {
 		} else {
 			mWebView.loadUrl(mIntentUrl.toString());
 		}
-		TbsLog.d("time-cost", "cost time: "
-				+ (System.currentTimeMillis() - time));
 		CookieSyncManager.createInstance(this);
 		CookieSyncManager.getInstance().sync();
 	}
@@ -459,8 +447,6 @@ public class BrowserActivity extends Activity {
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		TbsLog.d(TAG, "onActivityResult, requestCode:" + requestCode
-				+ ",resultCode:" + resultCode);
 
 		if (resultCode == RESULT_OK) {
 			switch (requestCode) {
