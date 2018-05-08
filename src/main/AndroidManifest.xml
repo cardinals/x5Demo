@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.test_webview_demo"
+    package="com.bytedance.ee.bear"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -24,7 +24,7 @@
     <uses-permission android:name="android.permission.GET_TASKS" />
 
     <application
-        android:name=".APPAplication"
+        android:name="bear.example.bear.APPAplication"
         android:allowBackup="true"
         android:hardwareAccelerated="true"
         android:icon="@drawable/ic_launcher"
@@ -33,18 +33,18 @@
 
 
         <activity
-            android:name=".FullScreenActivity"
+            android:name="bear.example.bear.FullScreenActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:label="@string/app_name" >
         </activity>
 
         <activity
-            android:name=".FilechooserActivity"
+            android:name="bear.example.bear.FilechooserActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name=".BrowserActivity"
+            android:name="bear.example.bear.BrowserActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:label="@string/app_name" >
 
@@ -62,7 +62,7 @@
         </activity>
 
         <activity
-            android:name=".MainActivity"
+            android:name="bear.example.bear.MainActivity"
             android:configChanges="orientation|screenSize|keyboardHidden" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

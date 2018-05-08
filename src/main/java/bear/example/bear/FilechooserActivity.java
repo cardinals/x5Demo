@@ -1,12 +1,13 @@
-package com.example.test_webview_demo;
+package bear.example.bear;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
-
-import com.example.test_webview_demo.utils.X5WebView;
+import android.webkit.WebView;
+import bear.example.bear.utils.X5WebView;
+import com.bytedance.ee.bear.R;
 import com.tencent.smtt.sdk.ValueCallback;
 import com.tencent.smtt.sdk.WebChromeClient;
 
@@ -51,7 +52,7 @@ public class FilechooserActivity extends Activity {
             }
 
             // For Android  >= 5.0
-            public boolean onShowFileChooser(com.tencent.smtt.sdk.WebView webView,
+            public boolean onShowFileChooser(WebView webView,
                                              ValueCallback<Uri[]> filePathCallback,
                                              WebChromeClient.FileChooserParams fileChooserParams) {
                 Log.i("test", "openFileChooser 4:" + filePathCallback.toString());

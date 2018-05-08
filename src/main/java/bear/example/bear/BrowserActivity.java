@@ -1,7 +1,4 @@
-package com.example.test_webview_demo;
-
-import java.net.MalformedURLException;
-import java.net.URL;
+package bear.example.bear;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -16,9 +13,7 @@ import android.os.Message;
 import android.os.Process;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.KeyEvent;
-import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnFocusChangeListener;
@@ -30,12 +25,10 @@ import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.Toast;
-
-import com.example.test_webview_demo.utils.X5WebView;
+import bear.example.bear.utils.X5WebView;
+import com.bytedance.ee.bear.R;
 import com.tencent.smtt.export.external.interfaces.IX5WebChromeClient.CustomViewCallback;
 import com.tencent.smtt.export.external.interfaces.JsResult;
-import com.tencent.smtt.export.external.interfaces.WebResourceRequest;
-import com.tencent.smtt.export.external.interfaces.WebResourceResponse;
 import com.tencent.smtt.sdk.CookieSyncManager;
 import com.tencent.smtt.sdk.DownloadListener;
 import com.tencent.smtt.sdk.ValueCallback;
@@ -45,6 +38,8 @@ import com.tencent.smtt.sdk.WebSettings.LayoutAlgorithm;
 import com.tencent.smtt.sdk.WebView;
 import com.tencent.smtt.sdk.WebViewClient;
 import com.tencent.smtt.utils.TbsLog;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 public class BrowserActivity extends Activity {
 	/**
@@ -60,7 +55,8 @@ public class BrowserActivity extends Activity {
 	private Button mGo;
 	private EditText mUrl;
 
-	private static final String mHomeUrl = "https://www.tencent.com/";
+	private static final String mHomeUrl = "https://www.baidu.com/";
+	//private static final String mHomeUrl = "http://debugtbs.qq.com?type=1&url=http://soft.tbs.imtt.qq.com/17421/tbs_res_imtt_tbs_release_tbs_core_4.0.0.1200_044080_20180507_173101.tbs";
 	private static final String TAG = "SdkDemo";
 	private static final int MAX_LENGTH = 14;
 	private boolean mNeedTestPage = false;
@@ -226,7 +222,6 @@ public class BrowserActivity extends Activity {
 			@Override
 			public void onDownloadStart(String arg0, String arg1, String arg2,
 					String arg3, long arg4) {
-				TbsLog.d(TAG, "url: " + arg0);
 				new AlertDialog.Builder(BrowserActivity.this)
 						.setTitle("allow to download？")
 						.setPositiveButton("yes",
@@ -270,7 +265,7 @@ public class BrowserActivity extends Activity {
 
 		WebSettings webSetting = mWebView.getSettings();
 		webSetting.setAllowFileAccess(true);
-		webSetting.setLayoutAlgorithm(LayoutAlgorithm.NARROW_COLUMNS);
+		webSetting.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.NARROW_COLUMNS);
 		webSetting.setSupportZoom(true);
 		webSetting.setBuiltInZoomControls(true);
 		webSetting.setUseWideViewPort(true);
@@ -296,8 +291,6 @@ public class BrowserActivity extends Activity {
 		} else {
 			mWebView.loadUrl(mIntentUrl.toString());
 		}
-		TbsLog.d("time-cost", "cost time: "
-				+ (System.currentTimeMillis() - time));
 		CookieSyncManager.createInstance(this);
 		CookieSyncManager.getInstance().sync();
 	}
@@ -459,8 +452,6 @@ public class BrowserActivity extends Activity {
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		TbsLog.d(TAG, "onActivityResult, requestCode:" + requestCode
-				+ ",resultCode:" + resultCode);
 
 		if (resultCode == RESULT_OK) {
 			switch (requestCode) {

@@ -1,8 +1,7 @@
-package com.example.test_webview_demo;
+package bear.example.bear;
 
 import android.app.Application;
 import android.util.Log;
-
 import com.tencent.smtt.sdk.QbSdk;
 
 public class APPAplication extends Application {
@@ -12,7 +11,6 @@ public class APPAplication extends Application {
 		// TODO Auto-generated method stub
 		super.onCreate();
 		//搜集本地tbs内核信息并上报服务器，服务器返回结果决定使用哪个内核。
-		
 		QbSdk.PreInitCallback cb = new QbSdk.PreInitCallback() {
 			
 			@Override

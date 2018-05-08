@@ -1,4 +1,4 @@
-package com.example.test_webview_demo.utils;
+package bear.example.bear.utils;
 
 public interface WebViewJavaScriptFunction {
 
